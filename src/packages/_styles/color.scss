@@ -1,0 +1,26 @@
+@import './var.scss';
+
+.e-primary-color {
+    color: $e-primary-color;
+}
+.e-primary-bg {
+    background-color: $e-primary-color;
+}
+.e-success-color {
+    color: $e-success-color;
+}
+.e-success-bg {
+    background-color: $e-success-color;
+}
+.e-warning-color {
+    color: $e-warning-color;
+}
+.e-warning-bg {
+    background-color: $e-warning-color;
+}
+.e-error-color {
+    color: $e-error-color;
+}
+.e-error-bg {
+    background-color: $e-error-color;
+}

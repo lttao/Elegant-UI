@@ -1,0 +1,156 @@
+.e-flex {
+    /* #ifndef APP-NVUE */
+    display: flex;
+    /* #endif */
+}
+.e-flex-col {
+    /* #ifndef APP-NVUE */
+    display: flex;
+    /* #endif */
+    flex-direction: column;
+}
+.e-flex-shrink {
+    flex-shrink: 0;
+}
+.e-row-start {
+    justify-content: flex-start;
+}
+.e-row-center {
+    justify-content: center;
+}
+.e-row-end {
+    justify-content: flex-end;
+}
+.e-row-between {
+    justify-content: space-between;
+}
+.e-row-around {
+    justify-content: space-around;
+}
+
+.e-col-start {
+    align-items: flex-start;
+}
+.e-col-center {
+    align-items: center;
+}
+.e-col-end {
+    align-items: flex-end;
+}
+
+.e-flex-1 {
+    flex: 1;
+}
+
+.e-line-1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.e-line-2 {
+    -webkit-line-clamp: 2;
+}
+.e-line-3 {
+    -webkit-line-clamp: 3;
+}
+.e-line-4 {
+    -webkit-line-clamp: 4;
+}
+.e-line-5 {
+    -webkit-line-clamp: 5;
+}
+.e-line-2,
+.e-line-3,
+.e-line-4,
+.e-line-5 {
+    overflow: hidden;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box; // 弹性伸缩盒
+    -webkit-box-orient: vertical; // 设置伸缩盒子元素排列方式
+}
+
+.e-border,
+.e-border-bottom,
+.e-border-left,
+.e-border-right,
+.e-border-top,
+.e-border-top-bottom {
+    position: relative;
+}
+.e-border-bottom:after,
+.e-border-left:after,
+.e-border-right:after,
+.e-border-top-bottom:after,
+.e-border-top:after,
+.e-border:after {
+    /* #ifndef APP-NVUE */
+    content: " ";
+    /* #endif */
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    // 多加0.1%，能解决有时候边框缺失的问题
+    width: 199.8%;
+    height: 199.7%;
+    transform: scale(0.5, 0.5);
+    border: 0 solid #eeeeee;
+    z-index: 2;
+}
+.e-border-top:after {
+    border-top-width: 1px;
+}
+.e-border-left:after {
+    border-left-width: 1px;
+}
+.e-border-right:after {
+    border-right-width: 1px;
+}
+.e-border-bottom:after {
+    border-bottom-width: 1px;
+}
+.e-border-top-bottom:after {
+    border-width: 1px 0;
+}
+.e-border:after {
+    border-width: 1px;
+}
+// 字体加粗
+.e-font-bold {
+    font-weight: bold;
+}
+// 通用点击hover效果
+.e-hover {
+    opacity: 0.7;
+}
+// cell 类点击hover效果
+.e-cell-hover {
+    background-color: #ececec !important;
+}
+// 输入框空值样式
+.e-input-placeholder {
+    font-size: 14px;
+    color: #ccc;
+}
+// 状态栏
+.status-bar {
+    width: 750rpx;
+    height: var(--status-bar-height);
+}
+// 全面屏底部适配
+.iphonex-bottom {
+    width: 750rpx;
+    height: 0;
+    height: constant(safe-area-inset-bottom);
+    height: env(safe-area-inset-bottom);
+}
+// tabbar底部
+.tabbar-height {
+    width: 750rpx;
+    height: var(--window-bottom);
+    background-color: #ffffff;
+}
