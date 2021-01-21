@@ -1,3 +1,4 @@
+@import './var.scss';
 .e-flex {
     /* #ifndef APP-NVUE */
     display: flex;
@@ -126,6 +127,10 @@
 // 通用点击hover效果
 .e-hover {
     opacity: 0.7;
+}
+.e-disabled {
+    background: $e-disabled-color;
+    color: #fff!important;
 }
 // cell 类点击hover效果
 .e-cell-hover {

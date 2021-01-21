@@ -4,7 +4,7 @@ import { addUtil } from '../_utils'
 @Component
 export default class Mixins extends Vue {
   // 获取dom节点信息
-  public getRect(selector: string, all: boolean) {
+  public getRect(selector: string, all?: boolean) {
     return new Promise((resolve) => {
       uni
         .createSelectorQuery()

@@ -4,7 +4,9 @@
     <view>
       <text class="title">{{ title }}</text>
     </view>
-    <EButton :font-size="60" color="red" />
+    <EButton @click="handelClick" loading size="middle" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
+    <EButton @click="handelClick" plain borderRadius="10" round>按钮</EButton>
+    <EButton @click="handelClick" disabled loading type="warning" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
   </view>
 </template>
 
@@ -20,7 +22,16 @@ export default {
     EButton
   },
   onLoad() {},
-  methods: {}
+  methods: {
+    handelClick() {
+      uni.showToast({
+        title: '标题',
+        duration: 2000,
+        icon: 'none',
+        position: 'bottom'
+      })
+    }
+  }
 }
 </script>
 
