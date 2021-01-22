@@ -1,5 +1,5 @@
 import { Component, Vue } from 'vue-property-decorator'
-import { addUtil } from '../_utils'
+import { addUnit } from '../_utils'
 
 @Component
 export default class Mixins extends Vue {
@@ -22,5 +22,5 @@ export default class Mixins extends Vue {
   }
 
   // 添加单位
-  public addUtil = addUtil
+  public addUnit = addUnit
 }

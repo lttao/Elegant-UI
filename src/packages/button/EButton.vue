@@ -22,33 +22,34 @@ export default class EButton extends Mixins(mixin) {
   @Prop({
     type: String,
     default: 'primary'
-  }) public type!: string // 按钮样式
+  }) private type!: string // 按钮样式
   @Prop({
     type: String,
     default: 'default'
-  }) public size!: string // 按钮大小
-  @Prop(String) public openType!: string // 开放能力 与uniapp官方相同
-  @Prop(String) public color!: string // 字体颜色
-  @Prop(String) public loadingText!: string // 加载文字
-  @Prop([String, Number]) public width!: string | number // 按钮宽度
-  @Prop([String, Number]) public height!: string | number // 按钮高度
-  @Prop([String, Number]) public fontSize!: string | number // 字体大小
-  @Prop([String, Number]) public borderRadius!: string | number // 按钮圆角
-  @Prop(Boolean) public plain!: boolean // 镂空按钮
-  @Prop(Boolean) public disabled!: boolean // 按钮失效
-  @Prop(Boolean) public loading!: boolean // 按钮加载
-  @Prop(Boolean) public square!: boolean // 方形按钮
-  @Prop(Boolean) public round!: boolean // 圆形按钮
+  }) private size!: string // 按钮大小
+  @Prop(String) private openType!: string // 开放能力 与uniapp官方相同
+  @Prop(String) private color!: string // 字体颜色
+  @Prop(String) private loadingText!: string // 加载文字
+  @Prop([String, Number]) private width!: string | number // 按钮宽度
+  @Prop([String, Number]) private height!: string | number // 按钮高度
+  @Prop([String, Number]) private fontSize!: string | number // 字体大小
+  @Prop([String, Number]) private borderRadius!: string | number // 按钮圆角
+  @Prop(Boolean) private plain!: boolean // 镂空按钮
+  @Prop(Boolean) private disabled!: boolean // 按钮失效
+  @Prop(Boolean) private loading!: boolean // 按钮加载
+  @Prop(Boolean) private square!: boolean // 方形按钮
+  @Prop(Boolean) private round!: boolean // 圆形按钮
   @Prop({
     type: Object,
     default: () => ({})
-  }) public customStyle!: any // 自定义样式
+  }) private customStyle!: any // 自定义样式
 
   private buttonHeight!: number
 
   // 按钮样式
   get buttonStyle() {
     const {
+      addUnit,
       borderRadius,
       color,
       customStyle,
@@ -60,22 +61,22 @@ export default class EButton extends Mixins(mixin) {
     } = this
     const buttonStyle: any =  {
       color,
-      fontSize: this.addUtil(fontSize)
+      fontSize: addUnit(fontSize)
     }
-    if (width) buttonStyle.width = this.addUtil(width)
+    if (width) buttonStyle.width = addUnit(width)
     if (height) {
-      buttonStyle.height = this.addUtil(height)
-      buttonStyle.lineHeight = this.addUtil(height)
+      buttonStyle.height = addUnit(height)
+      buttonStyle.lineHeight = addUnit(height)
     }
     if (square) buttonStyle.borderRadius = 0
     if (round) buttonStyle.borderRadius = this.buttonHeight + 'px'
-    if (borderRadius) buttonStyle.borderRadius = this.addUtil(borderRadius)
+    if (borderRadius) buttonStyle.borderRadius = addUnit(borderRadius)
     return { buttonStyle, ...customStyle }
   }
   // 按钮hover效果
   get hoverClass () {
-    const { loading, disabled } = this
-    if (loading || disabled) return ''
+    const { disabled, loading } = this
+    if (disabled || loading) return ''
     return 'e-hover'
   }
 
@@ -86,8 +87,8 @@ export default class EButton extends Mixins(mixin) {
   }
 
   public handleTap(e: any) {
-    const { loading, disabled } = this
-    if (loading || disabled) return
+    const { disabled, loading } = this
+    if (disabled || loading) return
     this.$emit('click', e)
   }
 }
