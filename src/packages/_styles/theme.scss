@@ -1,0 +1,18 @@
+@import './var.scss';
+
+@media (prefers-color-scheme: dark) {
+    .theme-base-bg {
+        background: #000; 
+    }
+    .theme-base-color {
+        background: rgba(255, 255, 255, 0.8); 
+    }
+}
+@media (prefers-color-scheme: light) {
+    .theme-base-bg {
+        background: #fff; 
+    }
+    .theme-base-color {
+        background: rgba(0, 0, 0, 0.8); 
+    }
+}

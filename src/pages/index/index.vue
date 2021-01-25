@@ -8,12 +8,14 @@
     <EButton @click="handelClick" plain borderRadius="10" round>按钮</EButton>
     <EButton @click="handelClick" disabled loading type="warning" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
     <EIcon />
+    <ELoadingIcon />
   </view>
 </template>
 
 <script>
 import EButton from '@/packages/button/EButton.vue'
 import EIcon from '@/packages/icon/EIcon.vue'
+import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 export default {
   data() {
     return {
@@ -22,7 +24,8 @@ export default {
   },
   components: {
     EButton,
-    EIcon
+    EIcon,
+    ELoadingIcon
   },
   onLoad() {},
   methods: {
