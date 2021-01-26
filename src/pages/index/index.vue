@@ -13,7 +13,7 @@
     <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
     <EMask @click="showMask = false" :show="showMask" />
 
-    <EImage :src="src" width="300px" />
+    <EImage :src="src" width="100px" height="100px" />
   </view>
 </template>
 

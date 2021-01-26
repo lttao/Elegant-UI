@@ -24,10 +24,7 @@ export default class ELoadingIcon extends Mixins(mixin) {
         type: String,
         default: '#fff'
     }) private background!: string
-    @Prop({
-        type: String,
-        default: 'blue'
-    }) private color!: string
+    @Prop(String) private color!: string
     @Prop({
         type: String,
         default: '#fff'
@@ -63,6 +60,7 @@ export default class ELoadingIcon extends Mixins(mixin) {
 </script>
 
 <style lang="scss" scoped>
+@import '../_styles/var.scss';
 .e-loading-icon {
     position: relative;
     z-index: 1;
@@ -77,7 +75,7 @@ export default class ELoadingIcon extends Mixins(mixin) {
     left: 50%;
     width: calc(100% + 2px);
     height: calc(100% + 2px);
-    // background: red;
+    background: $e-primary-color;
     border-radius: 50%;
     overflow: hidden;
     transform: translate(-50%, -50%);
