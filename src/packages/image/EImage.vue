@@ -28,11 +28,11 @@ export default class EImage extends Mixins(mixin) {
     }) private mode!: string // 裁剪模式
     @Prop({
         type: String,
-        default: 'https://himg.bdimg.com/sys/portraitn/item/713f4c756f3137353833313535393935c4b5'
+        default: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3597053314,364663418&fm=26&gp=0.jpg'
     }) private loadingIcon!: string // 加载中的图标/图片
     @Prop({
         type: String,
-        default: 'https://mirror-gold-cdn.xitu.io/16a02316d6897f496b3?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1'
+        default: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2478530818,3372969471&fm=26&gp=0.jpg'
     }) private errorIcon!: string // 加载失败的图标/图片
     @Prop({
         type: [Number, String],
