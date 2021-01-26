@@ -1,6 +1,6 @@
 <template>
-  <view @click="handleTap" :style="[iconContainerStyle]" class="e-icon">
-    <image v-if="isImage" :src="name" :mode="mode" class="e-icon_img"></image>
+  <view @click="handleTap" :style="[sizeStyle, wrapStyle]" class="e-icon">
+    <image v-if="isImage" :src="name" :mode="mode" :style="[sizeStyle]" class="e-icon_img"></image>
     <text v-else :style="[iconStyle]" :class="customClass" class="iconfont"></text>
   </view>
 </template>
@@ -44,14 +44,19 @@ export default class EIcon extends Mixins(mixin) {
             fontWeight: bold ? 'bold' : '400'
         }
     }
-    get iconContainerStyle() {
-      const { name, width, height, size, addUnit } = this
-      const style: any = {}
-      style.backgroundColor = name ? '' : '#f6f6f6'
-      // 优先使用width和height属性，否则使用size属性
-      style.width = width ? addUnit(width) : addUnit(size)
-      style.height = height ? addUnit(height) : addUnit(size)
-      return style
+    get wrapStyle() {
+        const { name } = this
+        return {
+            backgroundColor: name ? '' : '#f6f6f6'
+        }
+    }
+    get sizeStyle() {
+        const { addUnit, height, size, width } = this
+        const style: any = {}
+        // 优先使用width和height属性，否则使用size属性
+        style.width = width ? addUnit(width) : addUnit(size)
+        style.height = height ? addUnit(height) : addUnit(size)
+        return style
     }
 
     public handleTap() {

@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <image class="logo" src="@/static/logo.png"></image>
+    <!-- <image class="logo" src="@/static/logo.png"></image> -->
     <view>
       <text class="title">{{ title }}</text>
     </view>
@@ -9,25 +9,40 @@
     <EButton @click="handelClick" disabled loading type="warning" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
     <EIcon />
     <ELoadingIcon />
+
+    <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
+    <EMask @click="showMask = false" :show="showMask" />
+
+    <EImage :src="src" width="300px" />
   </view>
 </template>
 
 <script>
 import EButton from '@/packages/button/EButton.vue'
 import EIcon from '@/packages/icon/EIcon.vue'
+import EMask from '@/packages/mask/EMask.vue'
+import EImage from '@/packages/image/EImage.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 export default {
   data() {
     return {
-      title: 'Hello'
+      title: 'Hello',
+      showMask: false,
+      src: ''
     }
   },
   components: {
     EButton,
     EIcon,
+    EMask,
+    EImage,
     ELoadingIcon
   },
-  onLoad() {},
+  onLoad() {
+    setTimeout(() => {
+      this.src = '4'
+    }, 3000);
+  },
   methods: {
     handelClick() {
       uni.showToast({

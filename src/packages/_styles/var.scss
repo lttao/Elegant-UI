@@ -4,6 +4,8 @@ $e-success-color: #52c41a; // 成功色
 $e-warning-color: #faad14; // 警告色
 $e-error-color: #f5222d; // 错误色
 $e-disabled-color: rgba(0, 0, 0, 0.25); // 失效色
+$e-mask-color: rgba(0, 0, 0, 0.6); // 蒙层色
+$e-module-bg-color: #f2f2f2;
 
 // 字体色
 $e-link-color: #1890ff; // 链接色
@@ -12,7 +14,7 @@ $e-text-color-secondary: rgba(0, 0, 0, 0.45); // 次文本色
 $e-heading-color: rgba(0, 0, 0, 0.85); // 标题色
 $e-text-color: rgba(0, 0, 0, 0.65); // 主文本色
 
-// 按钮配置
+// 按钮大小配置
 @mixin e-mini-button {
     min-width: 148rpx;
     height: 68rpx;
