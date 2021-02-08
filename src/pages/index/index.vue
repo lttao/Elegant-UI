@@ -11,9 +11,10 @@
     <ELoadingIcon />
 
     <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
-    <EPopup @click="showMask = false" v-model="showMask" position="center">
+    <!-- <EPopup @click="showMask = false" v-model="showMask" position="center">
       <view style="height: 200px; width: 200px; background: #fff;"></view>
-    </EPopup>
+    </EPopup> -->
+    <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal>
 
     <EImage :src="src" width="100px" height="100px" />
   </view>
@@ -23,6 +24,7 @@
 import EButton from '@/packages/button/EButton.vue'
 import EIcon from '@/packages/icon/EIcon.vue'
 import EPopup from '@/packages/popup/EPopup.vue'
+import EModal from '@/packages/modal/EModal.vue'
 import EImage from '@/packages/image/EImage.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 export default {
@@ -37,6 +39,7 @@ export default {
     EButton,
     EIcon,
     EPopup,
+    EModal,
     EImage,
     ELoadingIcon
   },
@@ -46,6 +49,11 @@ export default {
     }, 3000);
   },
   methods: {
+    handleConfirm() {
+      setTimeout(() => {
+        this.showMask = false
+      }, 1000);
+    },
     handelClick() {
       uni.showToast({
         title: '标题',

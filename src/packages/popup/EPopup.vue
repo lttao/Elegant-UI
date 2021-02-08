@@ -5,7 +5,7 @@
     <template v-if="display">
       <template v-if="position === 'center'">
         <view @click="maskTap" :style="[mergeStyle]" :class="[customClass, `e-popup-${position}`, classes]" class="e-popup">
-          <view @click.stop class="e-popup_content" :style="[customStyle]">
+          <view @click.stop class="e-popup_content" :style="[customStyle, {marginTop: addUnit(marginTop)}]">
               <slot />
           </view>
         </view>
@@ -20,13 +20,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch, Mixins } from 'vue-property-decorator'
+import mixin from '../_mixins/mixins'
 import EMask from '../mask/EMask.vue'
 
 @Component ({
     components: { EMask }
 })
-export default class EPopup extends Vue {
+export default class EPopup extends Mixins(mixin) {
     @Prop({
         type: Boolean,
         default: false
@@ -62,11 +63,15 @@ export default class EPopup extends Vue {
     @Prop({
       type: [Number, String],
       default: 300
-    }) duration!: number | string
+    }) duration!: number | string // 动画时长
+    @Prop({
+      type: [Number, String],
+      default: 0
+    }) marginTop!: number | string // postion="center"时，调整垂直位置
 
     private overlayShow: boolean = false // 是否显示蒙层
     private status: string = '' // 动画状态
-    private display: boolean = false
+    private display: boolean = false // 组件是否渲染
     private classes: string = ''
     private transitionEnded: boolean = false
 
