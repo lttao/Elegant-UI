@@ -11,7 +11,9 @@
     <ELoadingIcon />
 
     <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
-    <EMask @click="showMask = false" :show="showMask" />
+    <EPopup @click="showMask = false" v-model="showMask" position="center">
+      <view style="height: 200px; width: 200px; background: #fff;"></view>
+    </EPopup>
 
     <EImage :src="src" width="100px" height="100px" />
   </view>
@@ -20,7 +22,7 @@
 <script>
 import EButton from '@/packages/button/EButton.vue'
 import EIcon from '@/packages/icon/EIcon.vue'
-import EMask from '@/packages/mask/EMask.vue'
+import EPopup from '@/packages/popup/EPopup.vue'
 import EImage from '@/packages/image/EImage.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 export default {
@@ -34,7 +36,7 @@ export default {
   components: {
     EButton,
     EIcon,
-    EMask,
+    EPopup,
     EImage,
     ELoadingIcon
   },

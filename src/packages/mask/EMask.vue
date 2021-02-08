@@ -31,9 +31,13 @@ export default class EMask extends Vue {
         default: 300
     }) private duration!: number | string // 动画的过渡时间（单位为ms）
     @Prop(String) private background!: boolean // 颜色
+    @Prop({
+      type: Object,
+      default: () => ({})
+    }) customStyle!: any
 
     get maskStyle() {
-        const { background, duration, show, zIndex } = this
+        const { background, customStyle, duration, show, zIndex } = this
         const maskStyle: any = {}
         if (show) {
             maskStyle.zIndex = zIndex
@@ -44,6 +48,7 @@ export default class EMask extends Vue {
         }
         background && (maskStyle.background = background)
         maskStyle.transition = `all ${+duration / 1000}s ease-in-out`
+        if (Object.keys(customStyle).length) return {...maskStyle, customStyle}
         return maskStyle
     }
 
