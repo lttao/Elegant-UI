@@ -81,7 +81,7 @@ export default class EButton extends Mixins(mixin) {
   }
 
   private mounted() {
-    this.getRect('.e-button').then((rect: any = {}) => {
+    this.getRect('.e-button').then(rect => {
       this.buttonHeight = rect.height
     })
   }

@@ -1,12 +1,8 @@
 <template>
-    <view :style="[iconContainerStyle]" class="e-loading-icon">
-        <view :style="[iconStyle]" class="e-loading-loader">
-            <view :style="[maskStyle]" class="e-loading-loader_before"></view>
-            <view :style="[maskStyle]" class="e-loading-loader_after"></view>
-            <view :style="[imageStyle]" class="e-loading-loader_content">
-                <image src="/static/logo.png" class="e-loading-loader_image" />
-            </view>
-        </view>
+    <view v-show="show" :style="[iconStyle]" :class="`e-loading-icon_${type}`" class="e-loading-icon">
+        <block v-if="type === 'spinner'">
+            <view v-for="(item, index) in 12" :key="index" class="e-loading-icon_dot" />
+        </block>
     </view>
 </template>
 
@@ -17,43 +13,28 @@ import mixin from '../_mixins/mixins'
 @Component
 export default class ELoadingIcon extends Mixins(mixin) {
     @Prop({
+        type: String,
+        default: 'spinner'
+    }) type!: string
+    @Prop({
         type: [String, Number],
-        default: '26px'
+        default: '24px'
     }) private size!: string | number // 图标大小
     @Prop({
         type: String,
-        default: '#fff'
-    }) private background!: string
-    @Prop(String) private color!: string
+        default: '#1890ff'
+    }) private color!: string
     @Prop({
-        type: String,
-        default: '#fff'
-    }) private maskBackground!: string
+        type: Boolean,
+        default: true
+    }) show!: boolean
 
-
-    get iconContainerStyle() {
-        const { addUnit, size } = this
+    get iconStyle() {
+        const { addUnit, size, color } = this
         return {
             width: addUnit(size),
-            height: addUnit(size)
-        }
-    }
-    get iconStyle() {
-        const { color } = this
-        return {
-            background: color
-        }
-    }
-    get imageStyle() {
-        const { background } = this
-        return {
-            background
-        }
-    }
-    get maskStyle() {
-        const { background, maskBackground } = this
-        return {
-            background: maskBackground || background
+            height: addUnit(size),
+            color
         }
     }
 }
@@ -63,63 +44,89 @@ export default class ELoadingIcon extends Mixins(mixin) {
 @import '../_styles/var.scss';
 .e-loading-icon {
     position: relative;
-    z-index: 1;
-    // width: 30px;
-    // height: 30px;
-    border-radius: 50%;
-    overflow: hidden;
-}
-.e-loading-loader {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
-    background: $e-primary-color;
-    border-radius: 50%;
-    overflow: hidden;
-    transform: translate(-50%, -50%);
-    &_before {
+    box-sizing: border-box;
+    animation: e-loading-rotate .8s linear infinite;
+    &_spinner {
+        animation-timing-function: steps(12)
+    }
+    &_circular {
+        border: 1px solid transparent;
+        border-top-color: initial;
+        border-radius: 100%
+    }
+    &_dot {
         position: absolute;
         top: 0;
         left: 0;
-        width: 50%;
-        height: 100%;
-        background: #fff;
-        transform-origin: right center;
-        animation: e-load 2s infinite ease 1.5s;
-    }
-    &_after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 50%;
-        height: 100%;
-        background: #fff;
-        transform-origin: left center;
-        animation: e-load 2s infinite ease;
-    }
-    &_content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: calc(100% - 4px);
-        height: calc(100% - 4px);
-        background: #f2f2f2;
-        border-radius: 50%;
-        overflow: hidden;
-        transform: translate(-50%, -50%);
-    }
-    &_image {
         width: 100%;
         height: 100%;
-        opacity: 0.2;
+        &::before {
+            content: " ";
+            margin: 0 auto;
+            display: block;
+            width: 5%;
+            max-width: 2px;
+            height: 25%;
+            border-radius: 2px;
+            background-color: currentColor;
+        }
+        &:first-of-type{
+            transform: rotate(30deg);
+            opacity: 1
+        }
+        &:nth-of-type(2){
+            transform: rotate(60deg);
+            opacity: .9375
+        }
+        &:nth-of-type(3){
+            transform: rotate(90deg);
+            opacity: .875
+        }
+        &:nth-of-type(4){
+            transform: rotate(120deg);
+            opacity: .8125
+        }
+        &:nth-of-type(5){
+            transform: rotate(150deg);
+            opacity: .75
+        }
+        &:nth-of-type(6){
+            transform: rotate(180deg);
+            opacity: .6875
+        }
+        &:nth-of-type(7){
+            transform: rotate(210deg);
+            opacity: .625
+        }
+        &:nth-of-type(8){
+            transform: rotate(240deg);
+            opacity: .5625
+        }
+        &:nth-of-type(9){
+            transform: rotate(270deg);
+            opacity: .5
+        }
+        &:nth-of-type(10){
+            transform: rotate(300deg);
+            opacity: .4375
+        }
+        &:nth-of-type(11){
+            transform: rotate(330deg);
+            opacity: .375
+        }
+        &:nth-of-type(12){
+            transform: rotate(1turn);
+            opacity: .3125
+        }
     }
 }
-
-@keyframes e-load {
-	0% {transform: rotate(0deg)}
-	100% {transform: rotate(360deg)}
+@keyframes e-loading-rotate{
+    0%{
+        transform:rotate(0deg)
+    }
+    to{
+        transform:rotate(1turn)
+    }
 }
 
 </style>
