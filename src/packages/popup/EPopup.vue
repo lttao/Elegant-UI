@@ -24,6 +24,25 @@ import { Component, Prop, Vue, Watch, Mixins } from 'vue-property-decorator'
 import mixin from '../_mixins/mixins'
 import EMask from '../mask/EMask.vue'
 
+let systemInfo: any
+function getSystemInfoSync() {
+  if (systemInfo == null) systemInfo = uni.getSystemInfoSync()
+  return systemInfo
+}
+function requestAnimationFrame(cb: any) {
+  const systemInfo = getSystemInfoSync()
+  if (systemInfo.platform === 'devtools') {
+    return setTimeout(() => cb(), 1000 / 30)
+  }
+  return wx
+    .createSelectorQuery()
+    .selectViewport()
+    .boundingClientRect()
+    .exec(() => {
+      cb()
+    })
+}
+
 @Component ({
     components: { EMask }
 })

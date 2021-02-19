@@ -1,7 +1,7 @@
 <template>
   <view class="content">
-    <!-- <image class="logo" src="@/static/logo.png"></image> -->
-    <!-- <view>
+    <image class="logo" src="@/static/logo.png"></image>
+   <view>
       <text class="title">{{ title }}</text>
     </view>
     <EButton @click="handelClick" loading size="middle" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
@@ -11,13 +11,13 @@
     <ELoadingIcon type="circular" />
     <ELoadingIcon color="red" />
 
-    <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton> -->
+    <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
     <!-- <EPopup @click="showMask = false" v-model="showMask" position="center">
       <view style="height: 200px; width: 200px; background: #fff;"></view>
     </EPopup> -->
-    <!-- <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal> -->
+    <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal>
 
-    <!-- <EImage :src="src" width="100px" height="100px" /> -->
+    <EImage :src="src" width="100px" height="100px" />
     <ESwitch v-model="switchStatus" />
   </view>
 </template>

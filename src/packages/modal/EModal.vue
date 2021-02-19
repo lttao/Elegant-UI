@@ -16,7 +16,7 @@
             <view class="e-modal_actions e-border-top">
                 <view @click="handleCancel" :style="[cancelStyle]" class="e-modal_cancel e-modal_button e-border-right" hover-class="e-hover">{{ cancelText }}</view>
                 <view @click="handleConfirm" :style="[confirmStyle]" class="e-modal_confirm e-modal_button" :hover-class="confirmLoading ? 'none' : 'e-hover'">
-                    <e-loading-icon v-if="confirmLoading" />
+                    <e-loading-icon v-if="confirmLoading" :size="40" />
                     <text v-else>{{ confirmText }}</text>
                 </view>
             </view>
@@ -170,6 +170,7 @@ export default class EModal extends Mixins(mixin) {
         display: flex;
         align-items: center;
         justify-content: center;
+        font-weight: 500;
         font-size: 16px;
     }
     &_cancel {

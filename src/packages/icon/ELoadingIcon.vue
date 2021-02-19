@@ -1,5 +1,5 @@
 <template>
-    <view v-show="show" :style="[iconStyle]" :class="`e-loading-icon_${type}`" class="e-loading-icon">
+    <view v-show="show" :style="[iconStyle]" :class="'e-loading-icon_' + type" class="e-loading-icon">
         <block v-if="type === 'spinner'">
             <view v-for="(item, index) in 12" :key="index" class="e-loading-icon_dot" />
         </block>
@@ -64,7 +64,7 @@ export default class ELoadingIcon extends Mixins(mixin) {
             content: " ";
             margin: 0 auto;
             display: block;
-            width: 5%;
+            width: 8%;
             max-width: 2px;
             height: 25%;
             border-radius: 2px;

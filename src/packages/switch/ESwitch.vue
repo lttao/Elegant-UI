@@ -46,7 +46,10 @@ export default class ESwitch extends Mixins(mixin) {
       type: String,
       default: '#fff'
     }) nodeColor!: string // 开关背景颜色
-    @Prop(Boolean) vibrateShort!: boolean // 是否使手机发生短促震动
+    @Prop({
+        type: Boolean,
+        default: true
+    }) vibrateShort!: boolean // 是否使手机发生短促震动
     @Prop(Boolean) disabled!: boolean // 是否为禁用状态
     @Prop(Boolean) loading!: boolean // 是否为加载中状态
 
