@@ -1,9 +1,9 @@
 <template>
   <view class="content">
-    <image class="logo" src="@/static/logo.png"></image>
+    <!-- <image class="logo" src="@/static/logo.png"></image>
    <view>
       <text class="title">{{ title }}</text>
-    </view>
+    </view> -->
     <EButton @click="handelClick" loading size="middle" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
     <EButton @click="handelClick" plain borderRadius="10" round>按钮</EButton>
     <EButton @click="handelClick" disabled loading type="warning" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
@@ -12,10 +12,10 @@
     <ELoadingIcon color="red" />
 
     <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
-    <!-- <EPopup @click="showMask = false" v-model="showMask" position="center">
-      <view style="height: 200px; width: 200px; background: #fff;"></view>
-    </EPopup> -->
-    <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal>
+    <EPopup @click="showMask = false" v-model="showMask">
+      <view style="height: 750rpx; width: 750rpx; background: #fff;"></view>
+    </EPopup>
+    <!-- <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal> -->
 
     <EImage :src="src" width="100px" height="100px" />
     <ESwitch v-model="switchStatus" />
@@ -52,6 +52,9 @@ export default {
     setTimeout(() => {
       this.src = '4'
     }, 3000);
+  },
+  onPageScroll({scrollTop}) {
+    console.log(scrollTop);
   },
   methods: {
     handleConfirm() {

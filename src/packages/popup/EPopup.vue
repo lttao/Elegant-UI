@@ -24,25 +24,6 @@ import { Component, Prop, Vue, Watch, Mixins } from 'vue-property-decorator'
 import mixin from '../_mixins/mixins'
 import EMask from '../mask/EMask.vue'
 
-let systemInfo: any
-function getSystemInfoSync() {
-  if (systemInfo == null) systemInfo = uni.getSystemInfoSync()
-  return systemInfo
-}
-function requestAnimationFrame(cb: any) {
-  const systemInfo = getSystemInfoSync()
-  if (systemInfo.platform === 'devtools') {
-    return setTimeout(() => cb(), 1000 / 30)
-  }
-  return wx
-    .createSelectorQuery()
-    .selectViewport()
-    .boundingClientRect()
-    .exec(() => {
-      cb()
-    })
-}
-
 @Component ({
     components: { EMask }
 })
@@ -88,6 +69,7 @@ export default class EPopup extends Mixins(mixin) {
       default: 0
     }) marginTop!: number | string // postion="center"时，调整垂直位置
 
+    private systemInfo: any = uni.getSystemInfoSync()
     private overlayShow: boolean = false // 是否显示蒙层
     private status: string = '' // 动画状态
     private display: boolean = false // 组件是否渲染
@@ -117,7 +99,7 @@ export default class EPopup extends Mixins(mixin) {
     }
 
     public enter() {
-      const { position, getClassNames } = this
+      const { position, getClassNames, requestAnimationFrame } = this
       const classNames = getClassNames(position)
       this.status = 'enter'
       this.$emit('before-enter')
@@ -134,7 +116,7 @@ export default class EPopup extends Mixins(mixin) {
     }
     public leave() {
       if (!this.display) return
-      const { duration, position, getClassNames } = this
+      const { duration, position, getClassNames, requestAnimationFrame } = this
       const classNames = getClassNames(position)
       this.status = 'leave'
       this.$emit('before-leave')
@@ -163,6 +145,27 @@ export default class EPopup extends Mixins(mixin) {
         leave: `e-${name}-leave e-${name}-leave-active`,
         'leave-to': `e-${name}-leave-to e-${name}-leave-active`
       }
+    }
+
+    private requestAnimationFrame(cb: any) {
+      if (this.systemInfo.platform === 'devtools') {
+        return setTimeout(() => cb(), 1000 / 30)
+      }
+      // #ifdef H5
+      setTimeout(() => cb(), 1000 / 30)
+      // #endif
+      // #ifdef APP-PLUS
+      this.$nextTick(() => cb())
+      // #endif
+      // #ifdef MP-WEIXIN
+      uni
+        .createSelectorQuery()
+        .selectViewport()
+        .boundingClientRect(() => {})
+        .exec(() => {
+          cb()
+        })
+      // #endif
     }
 }
 </script>
