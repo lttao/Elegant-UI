@@ -12,15 +12,16 @@
     <ELoadingIcon color="red" />
 
     <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
-    <EPopup @click="showMask = false" v-model="showMask">
+    <!-- <EPopup @click="showMask = false" v-model="showMask">
       <view style="height: 750rpx; width: 750rpx; background: #fff;"></view>
-    </EPopup>
-    <!-- <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal> -->
+    </EPopup> -->
+    <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal>
 
     <EImage :src="src" width="100px" height="100px" />
     <ESwitch v-model="switchStatus" />
     <ELoadMore status="LOADING" />
     <ELoadMore status="END" />
+    <ETab @change="current = $event" :current="current" :list="list" />
   </view>
 </template>
 
@@ -33,13 +34,16 @@ import EImage from '@/packages/image/EImage.vue'
 import ESwitch from '@/packages/switch/ESwitch.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 import ELoadMore from '@/packages/loadMore/ELoadMore.vue'
+import ETab from '@/packages/tab/ETab.vue'
 export default {
   data() {
     return {
       title: 'Hello',
       showMask: false,
       src: '',
-      switchStatus: false
+      switchStatus: false,
+      list: ['全部', '待支付', '已完成'],
+      current: 0
     }
   },
   components: {
@@ -50,7 +54,8 @@ export default {
     EImage,
     ESwitch,
     ELoadingIcon,
-    ELoadMore
+    ELoadMore,
+    ETab
   },
   onLoad() {
     setTimeout(() => {
