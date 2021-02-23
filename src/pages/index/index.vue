@@ -19,6 +19,8 @@
 
     <EImage :src="src" width="100px" height="100px" />
     <ESwitch v-model="switchStatus" />
+    <ELoadMore status="LOADING" />
+    <ELoadMore status="END" />
   </view>
 </template>
 
@@ -30,6 +32,7 @@ import EModal from '@/packages/modal/EModal.vue'
 import EImage from '@/packages/image/EImage.vue'
 import ESwitch from '@/packages/switch/ESwitch.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
+import ELoadMore from '@/packages/loadMore/ELoadMore.vue'
 export default {
   data() {
     return {
@@ -46,7 +49,8 @@ export default {
     EModal,
     EImage,
     ESwitch,
-    ELoadingIcon
+    ELoadingIcon,
+    ELoadMore
   },
   onLoad() {
     setTimeout(() => {
