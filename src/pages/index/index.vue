@@ -4,24 +4,27 @@
    <view>
       <text class="title">{{ title }}</text>
     </view> -->
-    <EButton @click="handelClick" loading size="middle" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
+    <!-- <EButton @click="handelClick" loading size="middle" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
     <EButton @click="handelClick" plain borderRadius="10" round>按钮</EButton>
     <EButton @click="handelClick" disabled loading type="warning" loading-text="加载中..." borderRadius="10" round>按钮</EButton>
     <EIcon />
     <ELoadingIcon type="circular" />
     <ELoadingIcon color="red" />
 
-    <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton>
+    <EButton @click="showMask = true" borderRadius="10" round>按钮</EButton> -->
     <!-- <EPopup @click="showMask = false" v-model="showMask">
       <view style="height: 750rpx; width: 750rpx; background: #fff;"></view>
     </EPopup> -->
-    <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal>
+    <!-- <e-modal @confirm="handleConfirm" v-model="showMask" async title="提示" content="你确定吗？"></e-modal> -->
 
-    <EImage :src="src" width="100px" height="100px" />
+    <!-- <EImage :src="src" width="100px" height="100px" />
     <ESwitch v-model="switchStatus" />
     <ELoadMore status="LOADING" />
     <ELoadMore status="END" />
-    <ETab @change="current = $event" :current="current" :list="list" />
+    <ETab @change="current = $event" :current="current" :list="list" /> -->
+
+    <ESticky>哈哈</ESticky>
+    <view style="height: 1000px;"></view>
   </view>
 </template>
 
@@ -35,6 +38,7 @@ import ESwitch from '@/packages/switch/ESwitch.vue'
 import ELoadingIcon from '@/packages/icon/ELoadingIcon.vue'
 import ELoadMore from '@/packages/loadMore/ELoadMore.vue'
 import ETab from '@/packages/tab/ETab.vue'
+import ESticky from '@/packages/sticky/ESticky.vue'
 export default {
   data() {
     return {
@@ -55,7 +59,8 @@ export default {
     ESwitch,
     ELoadingIcon,
     ELoadMore,
-    ETab
+    ETab,
+    ESticky
   },
   onLoad() {
     setTimeout(() => {
@@ -63,7 +68,7 @@ export default {
     }, 3000);
   },
   onPageScroll({scrollTop}) {
-    console.log(scrollTop);
+    // console.log(scrollTop);
   },
   methods: {
     handleConfirm() {
